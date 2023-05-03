@@ -1,16 +1,41 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://assets/truck/Truck.gltf" type="PackedScene" id=1]
+[ext_resource path="res://scenes/camera/camera.tscn" type="PackedScene" id=2]
+
+[sub_resource type="ProceduralSky" id=3]
+ground_bottom_color = Color( 0.647059, 0.839216, 0.945098, 1 )
+ground_horizon_color = Color( 0.839216, 0.917647, 0.980392, 1 )
+sun_latitude = 9.02
+sun_longitude = 29.69
+
+[sub_resource type="Environment" id=1]
+background_mode = 2
+background_sky = SubResource( 3 )
+background_color = Color( 1, 1, 1, 1 )
+ambient_light_color = Color( 0.0745098, 0.0745098, 0.0745098, 1 )
+ambient_light_energy = 5.18
+ambient_light_sky_contribution = 0.22
+dof_blur_near_transition = 31.08
+
+[sub_resource type="PlaneMesh" id=2]
+size = Vector2( 20, 20 )
 
 [node name="Main" type="Spatial"]
 
-[node name="Camera" type="Camera" parent="."]
-transform = Transform( 1, 0, 0, 0, 0.9242, 0.381909, 0, -0.381909, 0.9242, 0, 1.24335, 2.28375 )
-current = true
-fov = 60.2
-near = 0.44
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource( 1 )
 
 [node name="Truck" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0260856, 0 )
+
+[node name="CameraGimbal" parent="." instance=ExtResource( 2 )]
+target = NodePath("../Truck")
+mouse_control = true
+
+[node name="MeshInstance" type="MeshInstance" parent="."]
+mesh = SubResource( 2 )
 
 [node name="DirectionalLight" type="DirectionalLight" parent="."]
-transform = Transform( -0.489346, 0.738736, 0.463475, -0.0542798, -0.556223, 0.829259, 0.870399, 0.380637, 0.312284, 5.20234, 2.0633, 0 )
+transform = Transform( 0.714245, 0.456016, -0.530946, -0.126609, 0.830275, 0.542783, 0.688349, -0.320458, 0.650755, -4.67199, 2.42965, 2.74479 )
+shadow_enabled = true
