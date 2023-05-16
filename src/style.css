@@ -23,6 +23,7 @@ body {
 .previews {
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
   max-width: 1000px;
   gap: 10px;
 }
