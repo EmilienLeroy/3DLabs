@@ -20,6 +20,22 @@ body {
   box-shadow: 0 5px 20px -5px #0000002e;
 }
 
+.download {
+  margin: 20px;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 7px;
+  background: #1881c3;
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 3px 10px 0px #00000069;
+  transition: all .3s ease;
+}
+
+.download:hover {
+  background: #0b4d77;
+}
+
 .previews {
   display: flex;
   flex-wrap: wrap;
